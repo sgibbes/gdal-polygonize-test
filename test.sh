@@ -58,8 +58,8 @@ function single_file() {
 function in_serial() {
     ./split.sh $RASTER $XCHUNKS $YCHUNKS
 
-    for x in $(eval echo {0..$(($XCHUNKS-1))}); do
-        for y in $(eval echo {0..$(($YCHUNKS-1))}); do
+    for x in $(eval echo {0..$(($XCHUNKS))}); do
+        for y in $(eval echo {0..$(($YCHUNKS))}); do
             gdal_polygonize.py -q \
                 input/${x}_${y}.tif -f "ESRI Shapefile" \
                 ${OUTPUT}_serial_${x}_${y}.shp
@@ -76,8 +76,8 @@ function in_parallel() {
         import subprocess
 
         chunks = []
-        for x in range(0, $(($XCHUNKS-1))):
-            for y in range(0, $(($YCHUNKS-1))):
+        for x in range(0, $(($XCHUNKS))):
+            for y in range(0, $(($YCHUNKS))):
                 chunks.append(str(x) + '_' + str(y))
 
         def polygonize(chunk):
