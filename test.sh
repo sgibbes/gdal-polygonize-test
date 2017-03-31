@@ -108,8 +108,8 @@ function main() {
     OUTPUT=output/out
     RASTER=input/${INPUT%.*}.vrt
 
-    XCHUNKS=8
-    YCHUNKS=8
+    XCHUNKS=20
+    YCHUNKS=20
 
     # make VRT, white=nodata
     gdal_translate -q -a_nodata 255 -of VRT $INPUT $RASTER
