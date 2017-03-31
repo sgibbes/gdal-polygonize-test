@@ -82,7 +82,7 @@ function in_parallel() {
 
         def polygonize(chunk):
             subprocess.call([
-                'gdal_polygonize.py -q \
+                'gdal_polygonize.py -nomask -q \
                 input/'+chunk+'.tif -f \"ESRI Shapefile\" \
                 ${OUTPUT}_parallel_'+chunk+'.shp'
             ], shell=True)
