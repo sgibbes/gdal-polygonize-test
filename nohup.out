@@ -1,0 +1,23 @@
+Testing mask_10N_020E.tif in parallel:
+Done! 
+ TIME: 1678.362s
+Testing mask_10N_020E_resmp.tif in parallel:
+Done! 
+ TIME: 62.576s
+Testing mask_10N_020E_resmp.tif in parallel:
+Done! 
+ TIME: 62.857s
+Testing mask_10N_020E_resmp.tif in parallel:
+Done! 
+ TIME: 62.564s
+Testing mask_10N_020E_resmp.tif in parallel:
+Done! 
+ TIME: 62.110s
+./test.sh: line 116: mask_10N_020E_resmp.tif: command not found
+./test.sh: line 116: input/mask_10N_020E_resmp.vrt: No such file or directory
+ERROR 6: Unknown option name '-m'
+ERROR 6: Unknown option name '-m'
+./split.sh: line 12: ul[0]: unbound variable
+Testing mask_10N_020E_resmp.tif in parallel:
+Done! 
+ TIME: 56.649s

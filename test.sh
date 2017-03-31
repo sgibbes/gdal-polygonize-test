@@ -82,7 +82,7 @@ function in_parallel() {
 
         def polygonize(chunk):
             subprocess.call([
-                'gdal_polygonize.py -nomask -q \
+                'gdal_polygonize.py -q \
                 input/'+chunk+'.tif -f \"ESRI Shapefile\" \
                 ${OUTPUT}_parallel_'+chunk+'.shp'
             ], shell=True)
@@ -106,14 +106,14 @@ function main() {
     mkdir -p input
     mkdir -p output
     OUTPUT=output/out
-    RASTER=input/${INPUT%.*}.vrt
+    RASTER=$INPUT
 
     XCHUNKS=20
     YCHUNKS=20
 
     # make VRT, white=nodata
-    gdal_translate -q -a_nodata 255 -of VRT $INPUT $RASTER
-
+    #gdal_translate -q -a_nodata 0 -of VRT $INPUT $RASTER
+    
     # single
     if [[ $METHOD = 'all' ]] || [[ $METHOD = 'single' ]]; then
         echo "Testing $INPUT as a single file:"
