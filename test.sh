@@ -138,7 +138,7 @@ function main() {
     fi
     
     # merge results
-    echo -e "Done! \n" $( TIMEFORMAT="TIME: %Rs"; { time merge; } 2>&1 )
+    # echo -e "Done! \n" $( TIMEFORMAT="TIME: %Rs"; { time merge; } 2>&1 )
 }
 
 main $@
