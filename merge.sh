@@ -1,6 +1,6 @@
 #!/bin/bash
-
-DATA=`find . -name 'output/*.shp'`
+echo "here"
+DATA=`find . -name '*.shp'`
 ogr2ogr -a_srs EPSG:4326 merge.shp
 for i in $DATA
 do
