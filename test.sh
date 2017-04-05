@@ -67,6 +67,9 @@ function in_serial() {
     done
 }
 
+# merge files back together
+function merge(){
+    ./merge.sh }
 # test chunks in parallel using Pool
 function in_parallel() {
     ./split.sh $RASTER $XCHUNKS $YCHUNKS
@@ -131,6 +134,9 @@ function main() {
         echo "Testing $INPUT in parallel:"
         echo -e "Done! \n" $( TIMEFORMAT="TIME: %Rs"; { time in_parallel; } 2>&1 )
     fi
+    
+    # merge results
+    merge
 }
 
 main $@
