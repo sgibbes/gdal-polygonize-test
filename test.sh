@@ -79,6 +79,7 @@ function in_parallel() {
     python -c "if True:
         from multiprocessing import Pool
         import subprocess
+        import os
 
         chunks = []
         for x in range(0, $(($XCHUNKS))):
