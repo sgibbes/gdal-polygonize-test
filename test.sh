@@ -67,6 +67,11 @@ function in_serial() {
     done
 }
 
+# merge files back together
+function merge() {
+    ./output/merge.sh
+ }
+
 # test chunks in parallel using Pool
 function in_parallel() {
     ./split.sh $RASTER $XCHUNKS $YCHUNKS
@@ -74,6 +79,7 @@ function in_parallel() {
     python -c "if True:
         from multiprocessing import Pool
         import subprocess
+        import os
 
         chunks = []
         for x in range(0, $(($XCHUNKS))):
@@ -106,14 +112,14 @@ function main() {
     mkdir -p input
     mkdir -p output
     OUTPUT=output/out
-    RASTER=input/${INPUT%.*}.vrt
+    RASTER=$INPUT
 
-    XCHUNKS=8
-    YCHUNKS=8
+    XCHUNKS=20
+    YCHUNKS=20
 
     # make VRT, white=nodata
-    gdal_translate -q -a_nodata 255 -of VRT $INPUT $RASTER
-
+    #gdal_translate -q -a_nodata 0 -of VRT $INPUT $RASTER
+    
     # single
     if [[ $METHOD = 'all' ]] || [[ $METHOD = 'single' ]]; then
         echo "Testing $INPUT as a single file:"
@@ -131,6 +137,9 @@ function main() {
         echo "Testing $INPUT in parallel:"
         echo -e "Done! \n" $( TIMEFORMAT="TIME: %Rs"; { time in_parallel; } 2>&1 )
     fi
+    
+    # merge results
+    # echo -e "Done! \n" $( TIMEFORMAT="TIME: %Rs"; { time merge; } 2>&1 )
 }
 
 main $@
