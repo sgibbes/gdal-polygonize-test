@@ -11,14 +11,14 @@ for tile_name in tile_list:
     extent_url = r'http://commondatastorage.googleapis.com/earthenginepartners-hansen/GFC2014/Hansen_GFC2014_treecover2000_{}.tif'.format(tile_name)
     extent_local = '{}.tif'.format(tile_name)
     subprocess.check_call(['wget', '-O', extent_local, extent_url])
-<<<<<<< HEAD
+
     
     # mask tcd tile
     masked_tile_30 = '--outfile={}_masked.tif'.format(tile_name)
     cmd = [r'C:\Program Files\GDAL\gdal_calc.py', '-A', input_tif, outfile, '--calc="A>30"', '--NoDataValue=0', '-co', 'COMPRESS=LZW']
     subprocess.check_call(cmd)
     
-=======
+
 
     # resample tile to .00075 (3x bigger pixels)
     resample_tile = '{}_resample.tif'.format(tile_name)
@@ -30,7 +30,6 @@ for tile_name in tile_list:
     cmd = ['gdal_calc.py', '-A', resample_tile, '--outfile={}'.format(masked_tile_30), '--calc=A>30', '--NoDataValue=0', '--co', 'COMPRESS=LZW']
     subprocess.check_call(cmd)
 
->>>>>>> cc6d6d6cd3e7441b9960c25f61468321c82baf5c
     # polygonize tile
     polygonize_cmd = ['./test.sh', '-m', 'parallel', masked_tile_30]
     subprocess.check_call(polygonize_cmd)
