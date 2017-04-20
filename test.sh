@@ -43,7 +43,7 @@ function get_opts() {
     if [[ $ARGC -eq 1 ]]; then
         INPUT=${1:-0}
     else
-        INPUT="11_1444_804.tif"
+        INPUT="00N_000E.tif"
     fi
 }
 
@@ -79,6 +79,7 @@ function in_parallel() {
     python -c "if True:
         from multiprocessing import Pool
         import subprocess
+        import os
 
         chunks = []
         for x in range(0, $(($XCHUNKS))):
@@ -138,7 +139,7 @@ function main() {
     fi
     
     # merge results
-    echo -e "Done! \n" $( TIMEFORMAT="TIME: %Rs"; { time merge; } 2>&1 )
+    # echo -e "Done! \n" $( TIMEFORMAT="TIME: %Rs"; { time merge; } 2>&1 )
 }
 
 main $@
