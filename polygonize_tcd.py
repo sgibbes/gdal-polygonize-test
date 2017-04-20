@@ -13,10 +13,8 @@ for tile_name in tile_list:
     
     # mask tcd tile
     masked_tile_30 = '--outfile={}_masked.tif'.format(tile_name)
-
-	cmd = [r'C:\Program Files\GDAL\gdal_calc.py', '-A', input_tif, outfile, '--calc="A>30"', '--NoDataValue=0', '-co', 'COMPRESS=LZW']
-
-	subprocess.check_call(cmd)
+    cmd = [r'C:\Program Files\GDAL\gdal_calc.py', '-A', input_tif, outfile, '--calc="A>30"', '--NoDataValue=0', '-co', 'COMPRESS=LZW']
+    subprocess.check_call(cmd)
     
     # polygonize tile
     polygonize_cmd = ['./test.sh', '-m', 'parallel', masked_tile_30]
